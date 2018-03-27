@@ -1,0 +1,70 @@
+{
+  "name": "org-graph-editor",
+  "version": "1.0.0",
+  "description": "The simple editor for graph of organization",
+  "author": "Aleksey Pikhtovnikov",
+  "homepage": "https://github.com/apigraf/org-graph-editor",
+  "scripts": {
+    "test": "karma start karma.conf.js --single-run",
+    "start": "webpack-dev-server --inline --env.target=dev",
+    "build": "webpack --env.target=prod",
+    "serve-dist": "cd ./dist & static -p 8000",
+    "build-analyze": "webpack --env.target=prod --env.analize=true"
+  },
+  "dependencies": {
+    "@angular/common": "5.2.9",
+    "@angular/compiler": "5.2.9",
+    "@angular/core": "5.2.9",
+    "@angular/forms": "5.2.9",
+    "@angular/platform-browser": "5.2.9",
+    "@angular/platform-browser-dynamic": "5.2.9",
+    "core-js": "2.5.3",
+    "rxjs": "5.5.7",
+    "zone.js": "0.8.20"
+  },
+  "devDependencies": {
+    "@angular/compiler-cli": "5.2.9",
+    "@ngtools/webpack": "1.8.2",
+    "@types/jasmine": "2.8.6",
+    "@types/node": "9.4.7",
+    "angular2-template-loader": "0.6.2",
+    "awesome-typescript-loader": "4.0.1",
+    "clean-webpack-plugin": "0.1.19",
+    "css-loader": "0.28.10",
+    "file-loader": "1.1.11",
+    "html-loader": "0.5.5",
+    "html-webpack-plugin": "3.0.6",
+    "jasmine": "2.99.0",
+    "karma": "1.7.1",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-jasmine": "1.1.1",
+    "karma-typescript": "3.0.12",
+    "karma-typescript-angular2-transform": "1.0.2",
+    "karma-typescript-preprocessor": "0.3.1",
+    "node-sass": "4.7.2",
+    "node-static": "0.7.10",
+    "pug": "2.0.1",
+    "pug-html-loader": "1.1.5",
+    "sass-loader": "6.0.7",
+    "style-loader": "0.20.3",
+    "to-string-loader": "1.1.5",
+    "tslint": "5.8.0",
+    "typescript": "2.7.2",
+    "webpack": "3.11.0",
+    "webpack-bundle-analyzer": "2.11.1",
+    "webpack-dev-server": "2.11.2",
+    "webpack-merge": "4.1.2"
+  },
+  "engines": {
+    "node": ">=6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apigraf/org-graph-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/apigraf/org-graph-editor/issues"
+  },
+  "private": false,
+  "license": "MIT"
+}
