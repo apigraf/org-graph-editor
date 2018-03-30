@@ -1,2 +1,5 @@
 .app
-    graph-editor
+    form.container(#form="ngForm")
+        graph-editor.graph-one([(ngModel)]="graph", name="graph")
+        graph-editor.graph-two([(ngModel)]="graph2", name="graph2")
+    button.graph-log-button.btn.btn_blue((click)="logGraphsData()") Вывести в консоль данные графов

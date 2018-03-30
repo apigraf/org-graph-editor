@@ -1,0 +1,53 @@
+$table_color: #757575;
+$table_border-color: lighten($table_color, 30);
+$table_box-shadow-color: darken($table_border-color, 20);
+
+$table-head_color: lighten($table_color, 10);
+
+.table{
+  display: table;
+  width: 100%;
+
+  &__row {
+    display: table-row;
+  }
+
+  &__cell {
+    display: table-cell;
+    border-bottom: 1px solid $table_border-color;
+    font-size: 14px;
+
+    select, input {
+      display: block;
+      width: 99%;
+      background-color: transparent;
+      border: 1px solid transparent;
+      outline: none;
+      box-shadow: none;
+      padding: 10px 20px;
+    }
+
+    input:focus {
+      box-shadow: inset 0px 1px 8px 0px $table_box-shadow-color;
+    }
+
+    input[readonly]:focus {
+      box-shadow: none;
+    }
+  }
+
+  &__head {
+    display: table-header-group;
+    color: $table-head_color;
+    font-size: 12px;
+    font-weight: 500;
+
+    .table__cell {
+      padding: 10px 20px;
+    }
+  }
+
+  &__body {
+    display: table-row-group;
+  }
+}

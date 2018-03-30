@@ -12,13 +12,16 @@
     "build-analyze": "webpack --env.target=prod --env.analize=true"
   },
   "dependencies": {
+    "@angular/animations": "5.2.9",
     "@angular/common": "5.2.9",
     "@angular/compiler": "5.2.9",
     "@angular/core": "5.2.9",
     "@angular/forms": "5.2.9",
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
+    "@swimlane/ngx-graph": "4.0.2",
     "core-js": "2.5.3",
+    "d3-shape": "1.2.0",
     "rxjs": "5.5.7",
     "zone.js": "0.8.20"
   },

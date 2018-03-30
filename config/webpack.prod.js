@@ -12,11 +12,16 @@ const aotGeneratedPath = path.join(__dirname, '../app/$$_gendir');
 module.exports = webpackMerge(commonConfig, {
     module: {
         rules: [
+            // TODO: AoT пока отключаем из-за бага в ngx-graph (https://github.com/swimlane/ngx-graph/issues/46)
             {
-                test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-                include: [sourcePath, aotGeneratedPath],
-                use: ['@ngtools/webpack', 'angular2-template-loader']
+                test: /\.(ts)$/,
+                use: ['awesome-typescript-loader', 'angular2-template-loader']
             }
+            // {
+            //     test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+            //     include: [sourcePath, aotGeneratedPath],
+            //     use: ['@ngtools/webpack', 'angular2-template-loader']
+            // }
         ]
     },
 
@@ -40,10 +45,11 @@ module.exports = webpackMerge(commonConfig, {
             sourceMap: true
         }),
 
-        new AngularCompilerPlugin({
-            tsConfigPath: 'tsconfig.json',
-            entryModule: sourcePath + '/app.module#AppModule',
-            typeChecking: false
-        })
+        // TODO: AoT пока отключаем из-за бага в ngx-graph
+        // new AngularCompilerPlugin({
+        //     tsConfigPath: 'tsconfig.json',
+        //     entryModule: sourcePath + '/app.module#AppModule',
+        //     typeChecking: false
+        // })
     ]
 });

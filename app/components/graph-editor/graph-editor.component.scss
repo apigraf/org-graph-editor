@@ -1,2 +1,150 @@
+$graph-visualization_background-color: #fafafa;
+$graph-visualization_border-color: #eee;
+
+$edge_color: #757575;
+$node_color: #ffffff;
+$node_border-color: none;
+$node_background-color: #2f3646;
+
+$node-input_border-color: #757575;
+$node-input_background-color: lighten($node-input_border-color, 20);
+
+$linked-node-input_border-color: $node-input_border-color;
+$linked-node-input_background-color: $node-input_background-color;
+
+$linked-node-input-indicator_color: $linked-node-input_border-color;
+$linked-node-input-indicator_background-color: #fff;
+$linked-node-input-indicator_border-color: $linked-node-input-indicator_color;
+
+$node-without-linked_color: #8f8f8f;
+
 .graph-editor {
+  width: 100%;
+  padding: 30px;
+
+  &__visualization,
+  &__table {
+    width: 100%;
+  }
+
+  &__visualization {
+    display: block;
+    position: relative;
+    height: 250px;
+    background-color: $graph-visualization_background-color;
+    border-top: 1px solid $graph-visualization_border-color;
+    border-bottom: 1px solid $graph-visualization_border-color;
+    margin-bottom: 30px;
+
+    .node {
+      &__block {
+        stroke: $node_border-color;
+        fill: $node_background-color;
+      }
+
+      &__label {
+        font-size: 14px;
+        stroke: none;
+        fill: $node_color;
+        alignment-baseline: central;
+      }
+    }
+
+    .edge {
+      stroke: $edge_color;
+
+      &__arrow {
+        fill: $edge_color;
+      }
+
+      &__line {
+        stroke-width: 2;
+      }
+
+      &__label {
+        stroke: none;
+        font-size: 14px;
+        fill: $edge_color;
+        text-anchor: middle;
+      }
+    }
+  }
+
+  &__table {
+    select {
+      width: 100%;
+    }
+
+    input[readonly] {
+      cursor: pointer;
+    }
+
+    .node {
+      &__name {
+        position: relative;
+
+        &_ready-for-change {
+          border-color: $node-input_border-color;
+          background-color: $node-input_background-color;
+        }
+      }
+
+      &__link-type {
+      }
+
+      &__linked-node {
+        position: relative;
+
+        &_ready-for-change {
+          border-color: $linked-node-input_border-color;
+          background-color: $linked-node-input_background-color;
+        }
+
+        &__edit-indicator {
+          position: absolute;
+          height: 16px;
+          width: 16px;
+          line-height: 16px;
+          top: 10px;
+          right: 15px;
+          background-color: $linked-node-input-indicator_background-color;
+          border: 1px solid $linked-node-input-indicator_border-color;
+          border-radius: 16px;
+          color: $linked-node-input-indicator_color;
+          font-size: 12px;
+          font-weight: 500;
+          text-align: center;
+          cursor: help;
+        }
+      }
+
+      .delete-button {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        height: 16px;
+        width: 16px;
+        line-height: 16px;
+        top: 10px;
+        right: 15px;
+        color: $linked-node-input-indicator_color;
+        font-weight: 500;
+        text-align: center;
+        font-size: 16px;
+      }
+
+      &__name,
+      &__linked-node {
+        &:hover {
+          .delete-button {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .table {
+      margin-bottom: 20px;
+    }
+  }
 }

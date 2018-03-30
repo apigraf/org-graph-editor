@@ -1,1 +1,70 @@
 .graph-editor
+    .graph-editor__visualization
+        ngx-graph(
+            [orientation]="'LR'",
+            [curve]="curve",
+            [view]="graphView",
+            [autoZoom]="true",
+            [links]="graph.links",
+            [nodes] = "graph.nodes")
+            ng-template(#defsTemplate="")
+                svg
+                    marker#arrow(viewBox="0 -5 10 10", refX="8", refY="0", markerWidth="4", markerHeight="4", orient="auto")
+                        path.edge__arrow(d="M0,-5L10,0L0,5")
+            ng-template(#nodeTemplate="", let-node)
+                svg
+                    g.node
+                        rect.node__block([attr.width]="node.width", [attr.height]="node.height")
+                        text.node__label([attr.x]="10", [attr.y]="node.height / 2") {{node.label}}
+            ng-template(#linkTemplate="", let-link)
+                svg
+                    g.edge
+                        path.edge__line.line(marker-end="url(#arrow)")
+                        text.edge__label
+                            textPath(
+                                [attr.href]="'#' + link.id",
+                                [style.dominant-baseline]="link.dominantBaseline",
+                                startOffset="50%") {{getLinkTitle(link.label)}}
+
+    .graph-editor__table
+        .table
+            .table__head
+                .table__row
+                    .table__cell Компания
+                    .table__cell Связь
+                    .table__cell Связанная компания
+            .table__body
+                .table__row.node(*ngFor="let node of graphNodesView")
+                    .table__cell.node__name
+                        input(type="text",
+                            [class.node__name_ready-for-change]="changingLinkedNodeId && changingLinkedNodeId !== node.nodeId",
+                            [value]="node.nodeLabel",
+                            [readonly]="changingLinkedNodeId && changingLinkedNodeId !== node.nodeId",
+                            (click)="changeLinkedNode($event, node.nodeId, node.nodeLabel)",
+                            (change)="changeNodeLabel($event, node.nodeId)")
+                        span.delete-button(
+                            [title]="'Удалить компанию.\n" +
+                            "Будут удалены все связи.'",
+                            (click)="deleteNode(node.nodeId)") &times;
+                    .table__cell.node__link-type
+                        select([(ngModel)]="node.linkLabel",
+                            (change)="changeLinkLabel($event, node.nodeId)")
+                            option(
+                                *ngFor="let option of options",
+                                [value]="option.label",
+                                [selected]="node.linkLabel === option.label") {{option.title}}
+                    .table__cell.node__linked-node
+                        input(type="text",
+                            placeholder="...",
+                            [class.node__linked-node_ready-for-change]="node.nodeId === changingLinkedNodeId",
+                            [value]="node.linkedNodeLabel",
+                            [readonly]="true",
+                            (click)="setChangingLinkedNode($event, node.nodeId)")
+                        span.node__linked-node__edit-indicator(*ngIf="node.nodeId === changingLinkedNodeId",
+                            [title]="'Выберите связанную компанию из первой колонки.\n" +
+                            "Для отмены редактирования повторно кликните на поле.'") ?
+                        span.delete-button(
+                            [title]="'Удалить связь'",
+                            (click)="deleteLink(node)") &times;
+        .add-new-node
+            button.btn((click)="addNewNode()") Добавить компанию

@@ -1,1 +1,37 @@
 @import 'styles/layout';
+@import 'styles/tables';
+@import 'styles/buttons';
+
+.app {padding-top: 20px;}
+
+.container {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.graph {
+  &-one,
+  &-two {
+    flex: 0 1 auto;
+    align-self: auto;
+    box-shadow: 0 2px 10px 0 #ccc;
+  }
+
+  &-one {
+    margin-right: 30px;
+  }
+}
+
+.graph-log-button {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
+

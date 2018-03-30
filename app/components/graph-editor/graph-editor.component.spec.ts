@@ -32,4 +32,6 @@ describe('GraphEditorComponent', () => {
         expect(fixture).toBeDefined();
         expect(component).toBeDefined();
     });
+
+    // TODO: Дописать тесты
 });
